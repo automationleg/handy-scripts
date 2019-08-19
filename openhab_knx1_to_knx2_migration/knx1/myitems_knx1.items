@@ -1,0 +1,68 @@
+// Grupy
+Group All
+Group gParter	<groundfloor>	(All)// Grupa Parter
+Group gPietro	<firstfloor>	(All)// Grupa Pietro
+Group gOgrod	<outdoorlight>	(All)// Grupa Ogrod
+Group Weather 					(All)
+//Group Rolety 					(All)
+Group Status					(All)
+Group Okna_Otwarte				(All)
+//Group Okna_Uchylone				(All)
+Group Urzadzenia
+Group Wentylatory				(All)
+
+//Pomieszczenia Parter
+Group Parter_Funkcyjne	"Pokoje funkcyjne"	<washingmachine>	(gParter)
+
+Group Parter_Garaz		"Garaz"				<garage>			(Parter_Funkcyjne)	
+Group Parter_Kotlownia	"Kotlownia"			<energy>			(Parter_Funkcyjne)
+Group Parter_Spizarnia	"Spizarnia"			<spizarnia>			(Parter_Funkcyjne)
+Group Parter_Pralnia	"Pralnia"			<washingmachine>	(Parter_Funkcyjne)
+Group Parter_WC			"WC"				<bath>				(gParter)
+Group Parter_Garderoba	"Garderoba"			<wardrobe>			(Parter_Funkcyjne)
+Group Parter_Wiatrolap	"Wiatrolap"			<wiatrolap>			(gParter)
+Group Parter_WC_Gosc	"WC Goscinne"		<bath>				(gParter)
+Group Parter_Goscinny	"Pokoj Goscinny"	<bedroom_blue>		(gParter)
+Group Parter_Korytarz	"Korytarz"			<corridor>			(gParter)
+Group Parter_Jadalnia	"Jadalnia"			<kitchen>			(gParter)
+Group Parter_Salon		"Salon"				<sofa>				(gParter)
+Group Parter_Schody		"Schody"			<schody>			(gParter)
+
+//Pomieszczenia Pietro
+Group Pietro_Gabinet_ag		"Gabinet Agatki"	<woman_3>		(gPietro)
+Group Pietro_Gabinet_kr		"Gabinet Krzyska"	<man_3>			(gPietro)
+Group Pietro_Pokoj_m		"Pokoj Marysi"		<girl_1>		(gPietro)
+Group Pietro_Pokoj_n		"Pokoj Natalki"		<girl_2>		(gPietro)
+Group Pietro_Sypialnia		"Sypialnia"			<bedroom_blue>		(gPietro)
+Group Pietro_Garderoba		"Garderoba"			<wardrobe>		(gPietro)
+Group Pietro_Korytarz		"Korytarz"			<corridor>		(gPietro)
+Group Pietro_Lazienka_Duza	"Lazienka Duza"		<bath>			(gPietro)
+Group Pietro_Lazienka_Mala	"Lazienka Mala"		<bath>			(gPietro)
+
+//Ogrod
+Group Wejscia				"Wejscie Glowne"			<frontdoor>					(gOgrod)
+Group Zewnatrz_Garaz		"Przed Garażem"				<garage_detached>			(gOgrod)
+
+
+/* Aktywne Grupy */
+Group:Switch:OR(ON, OFF) 			Oswietlenie 			"Wszystkie Światła [(%d)]" 									(All)
+Group:Switch:OR(ON, OFF) 			Oswietlenie_Parter 		"Światła Parter [(%d)]" 									(Oswietlenie)
+Group:Switch:OR(ON, OFF) 			Oswietlenie_Pietro 		"Światła Pietro [(%d)]" 									(Oswietlenie)
+Group:Switch:OR(ON, OFF) 			Pietro_Sypialnia_Motion "Oswietlenie w sypialni i garderoba [(%d)]" 									
+
+Group:Number:OR(OFF,ON) 			Ogrzewanie				"Aktywne Grzejniki [(%d)]" 					<heating> 		(All)
+Group:Number:AVG 					Temperatury_aktualne	"Temperatury Pomieszczen [%.1f °C]" 		<temperature>	(Status)
+Group:Number:AVG					Temperatury_docelowe	"Temperatury docelowe [%.1f °C]" 			<temperature>	(Status)
+Group:Switch:OR(ON,OFF)				Central_Operation_Mode_Set	"Tryb centralny"						<heating>		(Status)
+
+
+/*Oswietlenie Parter*/
+Switch Swiatlo_Parter_Garaz_Sufit		"Garaż Sufit"	        	    (Parter_Garaz, Oswietlenie, Oswietlenie_Parter)			{knx="2/0/11+2/4/11"}
+Switch Swiatlo_Parter_Garaz_Boczne		"Garaż Sufit Boczne"			(Parter_Garaz, Oswietlenie, Oswietlenie_Parter)			{knx="2/0/12+2/4/12",imperihab="room:Garaz,label:Boczne,type:DevSwitch"}
+Switch Swiatlo_Parter_Kotlownia			"Kotłownia"						(Parter_Kotlownia, Oswietlenie, Oswietlenie_Parter)		{knx="2/0/13+2/4/13",imperihab="room:Kotlownia,label:Sufit,type:DevSwitch"}
+Switch Swiatlo_Parter_Spizarnia			"Spiżarnia"						(Parter_Spizarnia, Oswietlenie, Oswietlenie_Parter)		{knx="2/0/14+2/4/13",imperihab="room:Spizarnia,label:Sufit,type:DevSwitch"}
+Switch Swiatlo_Parter_Pralnia			"Pralnia" 						(Parter_Pralnia, Oswietlenie, Oswietlenie_Parter)		{knx="2/0/15+2/4/15",imperihab="room:Pralnia,label:Sufit,type:DevSwitch"}
+Switch Swiatlo_Parter_WC_Sufit			"WC Sufit" 						(Parter_WC, Oswietlenie, Oswietlenie_Parter)			{knx="2/0/16+2/4/16",imperihab="room:WC,label:Sufit,type:DevSwitch"}
+Switch Swiatlo_Parter_WC_Lustro			"WC Lustro"						(Parter_WC, Oswietlenie, Oswietlenie_Parter)			{knx="2/0/17+2/4/17",imperihab="room:WC,label:Lustro,type:DevSwitch"}
+Switch Swiatlo_Parter_WC_Sedes			"WC Półka"						(Parter_WC, Oswietlenie, Oswietlenie_Parter)			{knx="2/0/18+2/4/18",imperihab="room:Spizarnia,label:Półka,type:DevSwitch"}
+Switch Swiatlo_Parter_Garderoba			"Garderoba Sufit"				(Parter_Garderoba, Oswietlenie, Oswietlenie_Parter)		{knx="2/0/19+2/4/19",imperihab="room:Garderoba,label:Sufit,type:DevSwitch"}

@@ -1,0 +1,25 @@
+Bridge knx:ip:MDTRouter "KNX/IP Router" @ "KNX" [ 
+    type="TUNNEL", 
+    ipAddress="192.168.1.66", 
+    portNumber=3671, 
+    localIp="openhab-server",
+    readingPause=50, 
+    responseTimeout=10, 
+    readRetriesLimit=3, 
+    autoReconnectPeriod=60,
+    localSourceAddr="1.1.2"
+] {
+    Thing device MDT_AKS1 "Switch Actuator 1 - 3 fold" @ "KNX" [ fetch=false, pingInterval=600, readInterval=0 ]
+        {
+            Type    switch  :       Channel_A      "Swiatlo_Parter_Garaz_Sufit"                 [ ga="1/0/1+1/4/1" ]
+            Type    switch  :       Channel_B      "Swiatlo_Parter_Kotlownia"                   [ ga="1/0/2+1/4/2" ]
+            Type    switch  :       Channel_C      "Swiatlo_Parter_Pralnia"                     [ ga="1/0/3+1/4/3" ]
+    }
+    Thing device MDT_AKS2 "Switch Actuator 2 - 4 fold" @ "KNX" [ fetch=false, pingInterval=600, readInterval=0 ]
+        {
+            Type    switch  :       Channel_A      "Swiatlo_Parter_Garaz_Boczne"                [ ga="1/0/91+1/4/3" ]
+            Type    switch  :       Channel_B      "Swiatlo_Parter_Spizarnia"                   [ ga="1/0/92+1/4/2" ]
+            Type    switch  :       Channel_C      "Swiatlo_Parter_WC_Sufit"                    [ ga="1/0/93+1/2/1" ]
+            Type    switch  :       Channel_D      "Swiatlo_Parter_WC_Sedes"                    [ ga="1/0/94+1/2/1" ]
+    }
+}
